@@ -6,11 +6,13 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const loader = document.querySelector('.loader');
 
 export function showLoader() {
-  loader.classList.remove('is-hidden');
+  const loader = document.querySelector('.loader');
+  if (loader) loader.classList.remove('is-hidden');
 }
 
 export function hideLoader() {
-  loader.classList.add('is-hidden');
+  const loader = document.querySelector('.loader');
+  if (loader) loader.classList.add('is-hidden');
 }
 
 export function clearGallery(container) {

@@ -17,8 +17,6 @@ import {
 
 const form = document.querySelector('.form');
 const input = document.querySelector('input');
-const btnSabmit = document.querySelector('.btn');
-const loader = document.querySelector('.loader');
 const galleryContainer = document.querySelector('.gallery');
 
 form.addEventListener('submit', event => {
@@ -46,7 +44,11 @@ form.addEventListener('submit', event => {
       createGallery(data.hits, galleryContainer);
     })
     .catch(error => {
-      console.log(error);
+      iziToast.error({
+        title: 'Error',
+        message: 'Something went wrong. Please try again later!',
+        position: 'topRight',
+      });
     })
     .finally(() => {
       hideLoader();
