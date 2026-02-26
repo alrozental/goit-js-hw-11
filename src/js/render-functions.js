@@ -17,11 +17,16 @@ export function clearGallery(container) {
   container.innerHTML = '';
 }
 
+let lightbox = new SimpleLightbox('.gallery-link', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 export function createGallery(imeges, container) {
   const markup = imeges
     .map(
       img => `
-    <li class="gallery-item">
+       <li class="gallery-item">
         <a class="gallery-link" href="${img.largeImageURL}">
           <img class="gallery-image" src="${img.webformatURL}" alt="${img.tags}" />
         </a>
@@ -31,16 +36,11 @@ export function createGallery(imeges, container) {
           <p class="info-text"><b>Comments</b> ${img.comments}</p>
           <p class="info-text"><b>Downloads</b> ${img.downloads}</p>
         </div>
-      </li>
-    `
+      </li>`
     )
     .join('');
 
-  container.innerHTML = markup;
+  container.insertAdjacentHTML('beforeend', markup);
 
-  const lightbox = new SimpleLightbox('.gallery-link', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
   lightbox.refresh();
 }
